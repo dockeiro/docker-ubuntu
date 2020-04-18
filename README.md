@@ -1,4 +1,4 @@
-[![Circle CI](https://circleci.com/gh/codeworksio/docker-ubuntu.svg?style=shield "CircleCI")](https://circleci.com/gh/codeworksio/docker-ubuntu)&nbsp;[![Size](https://images.microbadger.com/badges/image/codeworksio/ubuntu.svg)](http://microbadger.com/images/codeworksio/ubuntu)&nbsp;[![Version](https://images.microbadger.com/badges/version/codeworksio/ubuntu.svg)](http://microbadger.com/images/codeworksio/ubuntu)&nbsp;[![Commit](https://images.microbadger.com/badges/commit/codeworksio/ubuntu.svg)](http://microbadger.com/images/codeworksio/ubuntu)&nbsp;[![Docker Hub](https://img.shields.io/docker/pulls/codeworksio/ubuntu.svg)](https://hub.docker.com/r/codeworksio/ubuntu/)
+[![Circle CI](https://circleci.com/gh/dockeirorock/docker-ubuntu.svg?style=shield "CircleCI")](https://circleci.com/gh/dockeirorock/docker-ubuntu)&nbsp;[![Size](https://images.microbadger.com/badges/image/dockeirorock/ubuntu.svg)](http://microbadger.com/images/dockeirorock/ubuntu)&nbsp;[![Version](https://images.microbadger.com/badges/version/dockeirorock/ubuntu.svg)](http://microbadger.com/images/dockeirorock/ubuntu)&nbsp;[![Commit](https://images.microbadger.com/badges/commit/dockeirorock/ubuntu.svg)](http://microbadger.com/images/dockeirorock/ubuntu)&nbsp;[![Docker Hub](https://img.shields.io/docker/pulls/dockeirorock/ubuntu.svg)](https://hub.docker.com/r/dockeirorock/ubuntu/)
 
 Docker Ubuntu
 =============
@@ -8,14 +8,14 @@ Customised Ubuntu base image.
 Installation
 ------------
 
-Builds of the image are available on [Docker Hub](https://hub.docker.com/r/codeworksio/ubuntu/).
+Builds of the image are available on [Docker Hub](https://hub.docker.com/r/dockeirorock/ubuntu/).
 
-    docker pull codeworksio/ubuntu
+    docker pull dockeirorock/ubuntu
 
 Alternatively you can build the image yourself.
 
-    docker build --tag codeworksio/ubuntu \
-        github.com/codeworksio/docker-ubuntu
+    docker build --tag dockeirorock/ubuntu \
+        github.com/dockeiro/docker-ubuntu
 
 Configuration
 -------------
