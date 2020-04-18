@@ -10,12 +10,27 @@ Installation
 
 Builds of the image are available on [Docker Hub](https://hub.docker.com/r/dockeirorock/ubuntu/).
 
-    docker pull dockeirorock/ubuntu
+```sh
+docker pull dockeirorock/ubuntu
+```
 
 Alternatively you can build the image yourself.
 
-    docker build --tag dockeirorock/ubuntu \
-        github.com/dockeiro/docker-ubuntu
+```sh
+git clone https://github.com/dockeiro/docker-ubuntu.git && \
+cd docker-ubuntu && \
+ARCH=$(dpkg --print-architecture)&& \
+echo ARCH loaded: ${ARCH} && \
+docker build --no-cache \
+--build-arg IMAGE=dockeirorock/ubuntu \
+--build-arg BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ") \
+--build-arg VERSION=$(cat VERSION) \
+--build-arg VCS_REF=$(git rev-parse --short HEAD) \
+--build-arg VCS_URL=$(git config --get remote.origin.url) \
+--build-arg ARCH=${ARCH} \
+--tag dockeirorock/ubuntu:$(cat VERSION)-${ARCH} \
+--rm .
+```
 
 Configuration
 -------------
@@ -29,13 +44,7 @@ Configuration
     - `INIT_RUN_AS=root` start the main process as a privileged user
     - `INIT_GOSU=true` make use of `gosu` (default)
 
-Testing
--------
-
-    make build start bash
-    make stop
-
 TODO
 ----
 
-* Check if [Linux Enhanced BPF (eBPF)](http://www.brendangregg.com/ebpf.html) can provide better tracing than `strace`
+ * None for now

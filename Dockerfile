@@ -2,9 +2,9 @@ FROM ubuntu:focal
 
 ARG APT_PROXY
 ARG APT_PROXY_SSL
+ARG ARCH
 ENV DEBIAN_FRONTEND="noninteractive" \
     TZ="America/Sao_Paulo" \
-    ARCH="amd64" \
     LANG="C.UTF-8" \
     LC_ALL="C.UTF-8" \
     SYSTEM_USER="default" \
@@ -23,16 +23,21 @@ RUN set -ex && \
     echo "APT::Install-Recommends 0;\nAPT::Install-Suggests 0;" >> /etc/apt/apt.conf.d/01norecommends && \
     apt-get --yes update && \
     apt-get --yes upgrade && \
-    apt-get --reinstall install libc-bin --yes; \
+    apt-get --yes --reinstall install libc-bin; \
     apt-get --yes install \
         ca-certificates \
         curl \
         locales \
+        tzdata \
     && \
     # SEE: https://github.com/tianon/gosu
     GOSU_VERSION="1.12" && \
     GOSU_DOWNLOAD_URL="https://github.com/tianon/gosu/releases/download" && \
-    curl -L "$GOSU_DOWNLOAD_URL/$GOSU_VERSION/gosu-$ARCH" -o /bin/gosu && \
+    echo +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ && \
+    echo += Downloading arch version: ${ARCH} =+ && \
+    echo +=   GOSU version: ${GOSU_VERSION}   =+ && \
+    echo +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ && \
+    curl -L "$GOSU_DOWNLOAD_URL/$GOSU_VERSION/gosu-${ARCH}" -o /bin/gosu && \
     chmod +x /bin/gosu && \
     gosu nobody true && \
     \
@@ -47,7 +52,7 @@ RUN set -ex && \
     rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/* /var/cache/apt/* && \
     rm -f /etc/apt/apt.conf.d/00proxy
 
-COPY assets/ /
+COPY ./assets/ /
 
 ENTRYPOINT [ "/sbin/entrypoint.sh" ]
 
