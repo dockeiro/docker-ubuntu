@@ -1,9 +1,10 @@
-FROM ubuntu:focal-20200319
+FROM ubuntu:focal
 
 ARG APT_PROXY
 ARG APT_PROXY_SSL
 ENV DEBIAN_FRONTEND="noninteractive" \
     TZ="America/Sao_Paulo" \
+    ARCH="amd64" \
     LANG="C.UTF-8" \
     LC_ALL="C.UTF-8" \
     SYSTEM_USER="default" \
@@ -22,6 +23,7 @@ RUN set -ex && \
     echo "APT::Install-Recommends 0;\nAPT::Install-Suggests 0;" >> /etc/apt/apt.conf.d/01norecommends && \
     apt-get --yes update && \
     apt-get --yes upgrade && \
+    apt-get --reinstall install libc-bin --yes; \
     apt-get --yes install \
         ca-certificates \
         curl \
@@ -30,7 +32,7 @@ RUN set -ex && \
     # SEE: https://github.com/tianon/gosu
     GOSU_VERSION="1.12" && \
     GOSU_DOWNLOAD_URL="https://github.com/tianon/gosu/releases/download" && \
-    curl -L "$GOSU_DOWNLOAD_URL/$GOSU_VERSION/gosu-amd64" -o /bin/gosu && \
+    curl -L "$GOSU_DOWNLOAD_URL/$GOSU_VERSION/gosu-$ARCH" -o /bin/gosu && \
     chmod +x /bin/gosu && \
     gosu nobody true && \
     \
