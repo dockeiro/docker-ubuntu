@@ -30,7 +30,7 @@ RUN set -ex && \
     # SEE: https://github.com/tianon/gosu
     GOSU_VERSION="1.12" && \
     GOSU_DOWNLOAD_URL="https://github.com/tianon/gosu/releases/download" && \
-    curl -L "$GOSU_DOWNLOAD_URL/$GOSU_VERSION/gosu-amd64" -o /bin/gosu && \
+    curl -L "$GOSU_DOWNLOAD_URL/$GOSU_VERSION/gosu-arm64" -o /bin/gosu && \
     chmod +x /bin/gosu && \
     gosu nobody true && \
     \
